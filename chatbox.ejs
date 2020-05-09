@@ -1,11 +1,199 @@
-<h1>
-	 THis tha chatbox yoo!!!!!!!
-</h1>
+<%- include("partials/header") %>
+
+<div class= "chatbox-container">
+	
+
+	
+	<div class="ui comments">
+  <h3 class="ui dividing header">ChatBox (Say Something! E.g. Hello world!?) </h3>
+  
+		
+<div>
+	
+		<!-- if user has a comment then go forward, if not, dont go forward  -->
+	<!-- %user.comments%>
+	<=user.message%> this one is how you show the msg! -->
+	
+	
+	
+
+	
+	<!-- THIS WORKS ABOVE KEEP IT HANDY!!!
+	 -->
+	
+	
+		<!-- % var comments = user.forEach(function(person) { %>   -->
+	
+
+			
+<!-- 	
+	% 
+var a = moment('2013-01-01');
+var b = moment('2013-06-01');
+
+// If you want an exclusive end date (half-open interval)
+for (var m = moment(a); m.isBefore(b); m.add(1, 'days')) {
+  console.log(m.format('YYYY-MM-DD'));
+}
+
+// If you want an inclusive end date (fully-closed interval)
+for (var m = moment(a); m.diff(b, 'days') <= 0; m.add(1, 'days')) {
+  console.log(m.format('YYYY-MM-DD'));
+} %> -->
+
+<!-- % var comments = user.forEach(function(comment) { %>
+		comment.comments.forEach(function(nextLevel) {%> 	
+			= nextLevel.message %>
+	}) %>
+	}) %>
+			 -->
+		
+<%console.log({comments: user.comments})%>
+	
+ <% user.forEach(function(person) {   %>
+
+	<br>
+	<% person.comments.forEach(function(comment) { %>
+		
+		<p> 
+		 <div class = "chatboxMessage">
+			<strong><%= person.username %></strong> in <%=user.city %> at <%=user.email%> focusing on <%=user.career %>
+		<br>
+				<%=comment.message%> 	<span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
+	</div>
+	<% }) %>
+	<%	}) %>
+			
+
+<!-- 	THIS WHOLE SHIT WORKS COMMENT.USER SHIT WITHOUT NESTED LOOP WTF MAY 6 
+		< user.comments.forEach(function(comment) { %>
+		<br>
+	<strong>%= user.username %></strong> in %=user.city %> at %=user.email%> focusing on %=user.career%>
+<br>
+		%=comment.message%> 		<span class="pull-right">%= moment(comment.createdAt).fromNow() %></span>
+	<br>
+	% }) %>
+	 -->
+	
+	
+	
+	
+	
+	
+		<!-- THIS IS THE CODE I HAD BEFORE BUT NOT SURE IF IT STILL WORKS?!?! -->
+			<!-- to find all the data = person %> -->
+					<!-- % user.forEach(function(person) {  -->
+
+		<!-- <br>
+			% person.comments.forEach(function(comment) { %>
+		
+		<p>
+		 
+			<strong>%= person.username %></strong> in %=person.city %> at <=person.email%> focusing on <=person.career%>
+		<br>
+				%=comment.message%> 	<span class="pull-right">%= moment(comment.createdAt).fromNow() %></span>
+				
 
 
-<% user.comments.forEach(function(comment) { %>
+<!-- 			
+		</p> -->
+<!-- 		
+		% }) >
+	%	}) %  -->
+	 <!-- const array = [{comment.message}];%>
+	 const sortedArray  = array.sort((a,b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD')) %> 
+	<console.log(sortedArray)%> 			
+ -->
+	
+
+<!-- user.comments.forEach(function(reply) { %>
 	<p>
-			<%= comment.text%>
+		%= reply.message %>
+	</p>
+	% }) %> -->
+	
+	<!-- THis is what you want!! { userAccount: { id: 5eb1825cd0bf7c060cdd2beb, username: 'Pjmas' }, _id: 5eb1d5b433e9e805a10b2764, __v: 0 } --------- THIS %comment%> never mind...
+ -->
+
+	
+	
+	<!-- // 2nd try with comments -->
+			
+
+	
+	
+	
+	
+</div>
+		
+
+<form class="ui reply form" action = "/chatbox" method="POST">
+    <div class="field">
+		<!-- name = "comment[{text}, {userAccount}]" -->
+     
+		
+		<textarea type = "text" name = "message"
+				placeholder = "Write your comment to other Brainstudent alumni here! Say hello and connect in your city."></textarea>
+		
+		<br>
+		<br>
+	
+	<% if(!currentUser) { %>
+			<div class="ui blue labeled submit icon button">
+      <i class="icon edit"></i><a href= "/register"> Register to Comment! </a>
+    </div>
+		
+		
+	<% } else { %> 
+	<div>
+		
+	<button class="ui blue labeled submit icon button" type="submit"><i class="icon edit"></i>Add Reply</button>
+		</div>	
+	<% } %>
+		
+		<!-- div for entire form whether or not user is signed in  -->
+	    </div>
+	
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+<%- include("partials/footer") %>
+
+<!-- May 5 best version but with no comments for usernames which are succesfully shown)
+user.forEach(function(person) { 
+		<p>
+				<strong>= person.username %></strong> in =person.city %> at =person.email%> focusing on =person.career%>
+			<br>
+
+			person.comments.forEach(function(chatbox) { 
+			=chatbox.comment 
+			
+				->
+
+
+<!-- to check what actually gets printed out! works
+user.forEach(function(user) { %>
+	<p>
+		 user
+	</p>
+		 -->
+
+
+<!-- this function works to narrow down double for Each for each comment and each user for double looping
+user.forEach(function(user) { 
+	<p>
+			<user.comments.forEach(function(text) { 
+			<= text 
+		}) 
 	</p>
 		
-<% }) %>
+ })  -->
